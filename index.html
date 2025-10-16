@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Federico Lanteri</title>
+<meta name="description" content="Federico Lanteri" />
+
+<style>
+:root{
+  --bg:#ffffff;
+  --text:#0f1720;
+  --muted:#556070;
+  --accent:#059669;
+  --accent-hover:#047857;
+  --card:#f8fafb;
+  --card-hover:#ffffff;
+  --border:rgba(15,23,32,0.06);
+  --shadow:rgba(15,23,32,0.04);
+  --shadow-hover:rgba(15,23,32,0.08);
+  --radius:16px;
+}
+
+[data-theme="dark"] {
+  --bg:#0a0f1a;
+  --text:#f3f4f6;
+  --muted:#9ca3af;
+  --card:#151b2b;
+  --card-hover:#1a2132;
+  --accent:#10b981;
+  --accent-hover:#34d399;
+  --border:#2d3748;
+  --shadow:rgba(0,0,0,0.2);
+  --shadow-hover:rgba(0,0,0,0.4);
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Inter","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  color:var(--text);
+  background:var(--bg);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  transition:background 0.4s ease,color 0.4s ease;
+  line-height:1.6;
+}
+
+.container {
+  max-width:1400px;
+  margin:0 auto;
+  padding:60px 40px;
+}
+
+@media (max-width:1200px) {
+  .container {
+    max-width:1000px;
+    padding:48px 32px;
+  }
+}
+
+@media (max-width:900px) {
+  .container {
+    padding:32px 20px;
+  }
+}
+
+header{
+  display:flex;
+  align-items:center;
+  gap:24px;
+  margin-bottom:48px;
+  position:relative;
+}
+
+.avatar{
+  width:110px;
+  height:110px;
+  border-radius:20px;
+  flex-shrink:0;
+  background:linear-gradient(135deg,#059669,#10b981,#34d399);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-weight:700;
+  font-size:36px;
+  box-shadow:0 8px 24px rgba(5,150,105,0.25);
+  transition:transform 0.3s ease,box-shadow 0.3s ease;
+}
+
+.avatar:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 32px rgba(5,150,105,0.35);
+}
+
+.header-content{
+  flex:1;
+}
+
+h1{
+  font-size:32px;
+  font-weight:700;
+  margin-bottom:8px;
+  letter-spacing:-0.02em;
+}
+
+p.lead{
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.7;
+}
+
+.theme-toggle{
+  position:absolute;
+  top:0;
+  right:0;
+  cursor:pointer;
+  font-size:14px;
+  font-weight:500;
+  color:var(--accent);
+  border:1px solid var(--border);
+  background:var(--card);
+  padding:10px 16px;
+  border-radius:12px;
+  transition:all 0.3s ease;
+}
+
+.theme-toggle:hover{
+  background:var(--card-hover);
+  border-color:var(--accent);
+  transform:translateY(-1px);
+  box-shadow:0 4px 12px var(--shadow);
+}
+
+nav{
+  margin-bottom:48px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+nav a{
+  padding:10px 18px;
+  border-radius:12px;
+  text-decoration:none;
+  color:var(--accent);
+  background:var(--card);
+  border:1px solid var(--border);
+  font-size:14px;
+  font-weight:500;
+  transition:all 0.3s ease;
+}
+
+nav a:hover{
+  background:var(--accent);
+  color:white;
+  border-color:var(--accent);
+  transform:translateY(-2px);
+  box-shadow:0 4px 12px rgba(5,150,105,0.2);
+}
+
+main{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:32px;
+}
+
+.card{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:28px;
+  border:1px solid var(--border);
+  box-shadow:0 2px 8px var(--shadow);
+  transition:all 0.3s ease;
+}
+
+.card:hover{
+  box-shadow:0 8px 24px var(--shadow-hover);
+  border-color:rgba(5,150,105,0.2);
+}
+
+.card h3{
+  font-size:20px;
+  font-weight:700;
+  margin-bottom:16px;
+  color:var(--text);
+}
+
+.muted{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.7;
+}
+#social-row .contact a{
+  display:inline-block;
+  margin-right:12px;
+  margin-bottom:8px;
+  text-decoration:none;
+  padding:8px 14px;
+  border-radius:12px;
+  background:var(--card);
+  border:1px solid var(--border);
+  color:var(--accent);
+  font-size:14px;
+  font-weight:500;
+  transition:all 0.3s ease;
+}
+
+#social-row .contact a:hover{
+  background:var(--accent);
+  color:white;
+  border-color:var(--accent);
+  transform:translateY(-2px);
+  box-shadow:0 4px 12px rgba(5,150,105,0.2);
+}
+
+[data-theme="dark"] #social-row .contact a{
+  background:var(--card);
+  color:var(--accent);
+  border-color:var(--border);
+}
+
+[data-theme="dark"] #social-row .contact a:hover{
+  background:var(--accent);
+  color:white;
+  border-color:var(--accent);
+}
+
+/* Publications */
+.pubs{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+.pub{
+  padding:20px;
+  border-radius:14px;
+  background:var(--card);
+  border:1px solid var(--border);
+  transition:all 0.3s ease;
+}
+
+.pub:hover{
+  background:var(--card-hover);
+  border-color:var(--accent);
+  transform:translateX(4px);
+  box-shadow:0 4px 16px var(--shadow-hover);
+}
+
+.pub .title{
+  font-weight:600;
+  font-size:16px;
+  color:var(--text);
+  text-decoration:none;
+  display:block;
+  margin-bottom:10px;
+  line-height:1.5;
+  transition:color 0.3s ease;
+}
+
+.pub .title:hover{
+  color:var(--accent);
+}
+
+.pub .meta{
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.6;
+}
+
+.pub .meta a{
+  color:var(--accent);
+  text-decoration:none;
+  transition:color 0.2s ease;
+  font-weight:500;
+}
+
+.pub .meta a:hover{
+  color:var(--accent-hover);
+  text-decoration:underline;
+}
+
+/* Projects */
+.projects{
+  display:grid;
+  gap:16px;
+}
+
+.project{
+  padding:20px;
+  border-radius:14px;
+  background:var(--card);
+  border:1px solid var(--border);
+  transition:all 0.3s ease;
+}
+
+.project:hover{
+  background:var(--card-hover);
+  border-color:var(--accent);
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px var(--shadow-hover);
+}
+
+.project h4{
+  font-size:17px;
+  font-weight:600;
+  margin-bottom:12px;
+  color:var(--text);
+}
+
+.project p{
+  margin-bottom:16px;
+}
+
+.project a{
+  display:inline-block;
+  padding:8px 16px;
+  border-radius:10px;
+  background:var(--accent);
+  color:white;
+  font-size:13px;
+  font-weight:600;
+  text-decoration:none;
+  margin-right:8px;
+  margin-top:4px;
+  transition:all 0.3s ease;
+}
+
+.project a:hover{
+  background:var(--accent-hover);
+  transform:translateY(-2px);
+  box-shadow:0 4px 12px rgba(5,150,105,0.3);
+}
+
+[data-theme="dark"] .project a{
+  background:var(--accent);
+  color:#0f1720;
+}
+
+[data-theme="dark"] .project a:hover{
+  background:var(--accent-hover);
+}
+
+/* Sidebar */
+aside{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+.contact a{
+  display:inline-block;
+  margin-right:8px;
+  margin-bottom:8px;
+  text-decoration:none;
+  padding:10px 14px;
+  border-radius:10px;
+  background:var(--card);
+  border:1px solid var(--border);
+  color:var(--text);
+  font-size:14px;
+  transition:all 0.3s ease;
+}
+
+.contact a:hover{
+  background:var(--accent);
+  color:white;
+  border-color:var(--accent);
+  transform:translateY(-2px);
+  box-shadow:0 4px 12px rgba(5,150,105,0.2);
+}
+
+/* Footer */
+footer{
+  margin-top:64px;
+  padding-top:32px;
+  border-top:1px solid var(--border);
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* Responsive */
+@media (max-width:900px){
+  main{
+    grid-template-columns:1fr;
+    gap:24px;
+  }
+  
+  header{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:20px;
+  }
+  
+  .avatar{
+    width:80px;
+    height:80px;
+    font-size:28px;
+  }
+  
+  h1{
+    font-size:26px;
+  }
+  
+  .theme-toggle{
+    position:static;
+    align-self:flex-start;
+  }
+}
+
+/* Smooth scroll */
+html{
+  scroll-behavior:smooth;
+}
+
+/* Section spacing */
+.card + .card{
+  margin-top:24px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <div class="header-content">
+    <h1>Federico Lanteri</h1>
+    <p class="lead">PhD Candidate @ Politecnico di Milano<br />MSc in Mathematical Engineering<br />Department of Civil and Environmental Engineering<br />Milano, Italy</p>
+  </div>
+  <button class="theme-toggle" id="themeToggle">Dark 🌙</button>
+</header>
+
+<main>
+  <section>
+  <div id="social-row">
+  <div class="contact">
+    <a href="mailto:federico.lanteri@polimi.it">Email</a>
+    <a href="https://www.linkedin.com/in/federico-lanteri-58663b197/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://scholar.google.com/citations?user=gFNVvd4AAAAJ&hl=en&oi=ao" target="_blank" rel="noopener">Scholar</a>
+    <a href="https://www.researchgate.net/profile/Federico-Lanteri-2" target="_blank" rel="noopener">ResearchGate</a>
+    <a href="https://github.com/fedelant" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div>
+    <div id="about" class="card">
+      <h3>About</h3>
+      <p class="muted">My research focuses on integrating traditional numerical methods with scientific machine learning to simulate complex physical systems, aiming to combine accuracy with computational efficiency. I am currently working on modeling free-surface flows, including non-Newtonian fluids with complex rheological behaviors.</p>
+    </div>
+
+    <div id="projects" class="card">
+      <h3>Projects</h3>
+      <div class="projects">
+      
+        <div class="project">
+          <h4>NeuralPFEM</h4>
+          <p class="muted">
+            NeuralPFEM is a mesh-based data-driven neural surrogate model for free-surface fluid flows. It combines a Lagrangian neural model with the efficient remeshing strategy of the Particle Finite Element Method (PFEM).
+          </p>
+          <p>
+            <a href="https://github.com/yourusername/NeuralPFEM" target="_blank">GitHub</a>
+          </p>
+        </div>
+
+        <div class="project">
+          <h4>ShapeGen3DCP</h4>
+          <p class="muted">
+            ShapeGen3DCP is a fast and user-friendly open-source tool to predict the cross-sectional geometry of the printed layers in 3D Concrete Printing (3DCP) based on material and process parameters. The tool uses machine learning models trained on computational fluid dynamics simulations to provide rapid predictions, enabling optimization of printing parameters for desired outcomes.
+          </p>
+          <p>
+            <a href="https://www.dica.polimi.it/ai3dcp/" target="_blank" rel="noopener">Project page</a>
+            <a href="https://shapegen3dcp.streamlit.app" target="_blank" rel="noopener">Online tool</a>
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="publications" class="card">
+      <h3>Publications</h3>
+      <div class="pubs">
+        <div class="pub">
+          <a class="title" href="#">A mesh-based Graph Neural Network approach for surrogate modeling of Lagrangian free surface fluid flows</a>
+          <div class="meta">
+            F. Lanteri, M. Cremonesi — Computers & Fluids • 2025
+            • <a href="https://doi.org/10.1016/j.compfluid.2025.106773" target="_blank" rel="noopener">10.1016/j.compfluid.2025.106773</a>
+          </div>
+        </div>
+
+        <div class="pub">
+          <a class="title" href="#">ShapeGen3DCP: A Deep Learning Framework for Layer Shape Prediction in 3D Concrete Printing</a>
+          <div class="meta">
+            G. Rizzieri, F. Lanteri, L. Ferrara, M. Cremonesi — Preprint • 2025
+            • <a href="https://doi.org/10.48550/arXiv.2510.02009" target="_blank" rel="noopener">10.48550/arXiv.2510.02009</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  © 2025 Federico Lanteri • Politecnico di Milano
+</footer>
+</div>
+
+<script>
+const toggle = document.getElementById('themeToggle');
+const root = document.documentElement;
+
+const savedTheme = localStorage.getItem('theme');
+if(savedTheme === 'dark'){
+  root.setAttribute('data-theme','dark');
+  toggle.textContent = 'Light ☀️';
+}
+
+toggle.addEventListener('click',()=>{
+  const dark = root.getAttribute('data-theme') === 'dark';
+  if(dark){
+    root.removeAttribute('data-theme');
+    localStorage.setItem('theme','light');
+    toggle.textContent = 'Dark 🌙';
+  }else{
+    root.setAttribute('data-theme','dark');
+    localStorage.setItem('theme','dark');
+    toggle.textContent = 'Light ☀️';
+  }
+});
+</script>
+</body>
+</html>
